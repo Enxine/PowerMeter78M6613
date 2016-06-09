@@ -32,7 +32,8 @@ real time requirements for the serial communications and this allows a flexible 
 the serial por to any pin of the Arduino. But remember to include SoftwareSerial library in your
 sketch. In addition to the PowerMeter78M6613 library itself, of course:
 
-```#include <SoftwareSerial.h> 
+```C
+#include <SoftwareSerial.h> 
 #include <PowerMeter78M6613.h>
 ```
 
@@ -40,19 +41,25 @@ The library is very easy to use. Once installed in your Arduino development envi
 just need to create an instance of the PowerMeter78M6613 object passing as parameters the pins
 of the Arduino connected to the serial port of the 78M6613:
 
-```PowerMeter78M6613 myPowerMeter = PowerMeter78M6613(TX_PIN, RX_PIN);```
+```C
+PowerMeter78M6613 myPowerMeter = PowerMeter78M6613(TX_PIN, RX_PIN);
+```
 
 Once you have the PowerMeter78M6613 object created you need to initialize the module in the
 Arduino's setup code section. It only needs the serial interface to be launched:
 
-```void setup() {  
+```C
+void setup() {  
      myPowerMeter.startSerialInterface();    
-  }```
+  }
+```
 
 Then you can freely use the command readPower to request the current power metering value at
 any time in your loop section.    
 
-```power_mW = myPowerMeter.readPower();``` 
+```C
+power_mW = myPowerMeter.readPower();
+``` 
 
 There are more avilable data, like line current, voltage, apparent or reactive power, etc. Please
 refer to the examples or to the library code for a complete reference of useable primitives.
@@ -62,12 +69,14 @@ with its own limitations. If you are using other SoftwareSerial instances in you
 them can communicate simultaneously. Turn off PowerMeter78M6613 serial communications before
 using other software serial port.
 
-```void loop() { 
+```C
+void loop() { 
      myPowerMeter.startSerialInterface();
 	 power_mW = myPowerMeter.readPower();
 	 myPowerMeter.stopSerialInterface();
 	 /* Use other software serial port stuff */
-  }```
+  }
+```
 
 See included code examples for more details on how to use the library
  
