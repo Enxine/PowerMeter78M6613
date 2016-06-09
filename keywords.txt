@@ -1,0 +1,26 @@
+###########################################
+# Syntax Coloring Map For PowerMeter78M6613
+###########################################
+
+###########################################
+# Class name (KEYWORD1)
+###########################################
+
+PowerMeter78M6613	KEYWORD1
+
+###########################################
+# Methods and Functions (KEYWORD2)
+###########################################
+
+startSerialInterface	KEYWORD2
+stopSerialInterface	KEYWORD2
+readRegister	KEYWORD2
+readPower	KEYWORD2
+readLineFrequency	KEYWORD2
+readVoltage	KEYWORD2
+readEnergy	KEYWORD2
+readCurrent	KEYWORD2
+readReactivePower	KEYWORD2
+readApparentPower	KEYWORD2
+readPowerFactor	KEYWORD2
+readPhaseAngle	KEYWORD2
