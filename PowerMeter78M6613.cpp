@@ -140,8 +140,11 @@ boolean PowerMeter78M6613::isValidStringHexData(char* buf) {
   Serial.println(F("---isValidStringHexData"));
 #endif    
   boolean valid = true;
-  if (strlen(buf) != 14) return false;
-  byte offset = 2;
+  //if (strlen(buf) != 14) return false;
+  if (strlen(buf) < 14) return false;
+  //byte offset = 2;
+  byte offset = (strlen(buf) - 14) + 2;
+  
   for (int i = 0; i < 8; i++) {
     char val = getValueHexChar(buf[offset+i]);
     if (val < 0) {
@@ -159,13 +162,15 @@ long PowerMeter78M6613::decodeStringHexData(char* buf) {
   Serial.println(F("---decodeStringHexData"));
 #endif
   unsigned long value = 0;
-  if (strlen(buf) != 14) {
+  //if (strlen(buf) != 14) {
+  if (strlen(buf) <14) {
 #ifdef _DEBUG 
     Serial.println(F("ERROR: 'buf' must be 14 characters"));
 #endif
     return 0;
   }
-  byte offset = 2;
+  //byte offset = 2;
+  byte offset = (strlen(buf) - 14) + 2;
 #ifdef _DEBUG
   Serial.print(F("offset "));
   Serial.println(offset);
@@ -207,7 +212,8 @@ long PowerMeter78M6613::readRegister(char* cmd) {
     
     valid = this->isValidStringHexData(buf);
     
-  } while ((bytes != 14) || !valid);
+  //} while ((bytes != 14) || !valid);
+  } while ((bytes < 14) || !valid);
   long value = 0;
   value = this->decodeStringHexData(buf);
 #ifdef _DEBUG
